@@ -19,6 +19,8 @@ public class Interval {
         prip1 = false; prip2 = false;
     }
 
+
+
     boolean isNull (){
         if(t1 == 0 && t2 == 0 && prip1 == false && prip2 == false) return true;
         return false;
@@ -41,10 +43,10 @@ public class Interval {
          if (t2 == i.t1 && i.t2 > t1) return new Interval(t2, t2, true, true);
         else if (t1 == i.t2 && i.t1 < t1) return new Interval(t1, t1, true, true);
         else if (t1 == i.t1 && t2 == i.t2) return new Interval (t1, t2, true, true);
-        else if (i.t1 > t1 && i.t1 < t2 && i.t2 > t2) return new Interval (i.t1, t2, false, false);
-        else if ( i.t2 > t1 && i.t2 < t2 && i.t1 < t1 ) return new Interval (t1, i.t2, false, false);
-        else if ( i.t1 < t1 && i.t2 > t2) return new Interval ( t1, t2, false, false);
-        else if ( t1 < i.t1 && t2 > i.t2) return new Interval (i.t1, i.t2, false, false);
+        else if (i.t1 > t1 && i.t1 < t2 && i.t2 > t2) return new Interval (i.t1, t2, i.prip1, prip2);
+        else if ( i.t2 > t1 && i.t2 < t2 && i.t1 < t1 ) return new Interval (t1, i.t2, prip1, i.prip2);
+        else if ( i.t1 < t1 && i.t2 > t2) return new Interval ( t1, t2, prip1, prip2);
+        else if ( t1 < i.t1 && t2 > i.t2) return new Interval (i.t1, i.t2, i.prip1, i.prip2);
         else return new Interval ();
     }
 
@@ -55,10 +57,10 @@ public class Interval {
         if (i1.t2 == i2.t1 && i2.t2 > i1.t1) return new Interval(i1.t2, i1.t2, true, true);
         else if (i1.t1 == i2.t2 && i2.t1 < i1.t1) return new Interval(i1.t1, i1.t1, true, true);
         else if (i1.t1 == i2.t1 && i1.t2 == i2.t2) return new Interval (i1.t1, i1.t2, true, true);
-        else if (i2.t1 > i1.t1 && i2.t1 < i1.t2 && i2.t2 > i1.t2) return new Interval (i2.t1, i1.t2, false, false);
-        else if ( i2.t2 > i1.t1 && i2.t2 < i1.t2 && i2.t1 < i1.t1 ) return new Interval (i1.t1, i2.t2, false, false);
-        else if ( i2.t1 < i1.t1 && i2.t2 > i1.t2) return new Interval ( i1.t1, i1.t2, false, false);
-        else if ( i1.t1 < i2.t1 && i1.t2 > i2.t2) return new Interval (i2.t1, i2.t2, false, false);
+        else if (i2.t1 > i1.t1 && i2.t1 < i1.t2 && i2.t2 > i1.t2) return new Interval (i2.t1, i1.t2, i2.prip1, i1.prip2);
+        else if ( i2.t2 > i1.t1 && i2.t2 < i1.t2 && i2.t1 < i1.t1 ) return new Interval (i1.t1, i2.t2, i1.prip1, i2.prip2);
+        else if ( i2.t1 < i1.t1 && i2.t2 > i1.t2) return new Interval ( i1.t1, i1.t2, i1.prip1, i1.prip2);
+        else if ( i1.t1 < i2.t1 && i1.t2 > i2.t2) return new Interval (i2.t1, i2.t2, i2.prip1, i2.prip2);
         else return new Interval ();
     }
 
